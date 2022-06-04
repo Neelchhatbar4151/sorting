@@ -41,7 +41,7 @@
     </div>
 
     <div>
-      <div class="input-data">
+      <div class="input-data" id="se">
         <input id="in" onclick="clean()" type="number" name="array">
 
         <button onclick="submit()">Submit
@@ -52,38 +52,35 @@
 
       </div>
     </div>
+    <!-- <div><script>document.write(window.outerWidth)</script></div> -->
     <script>
       
-      var i=0
+      var o=0
       
       var a = []
       const submit = () =>{
-        a[i] = document.getElementById ('in').value;
-        console.log("submitted:- "+a[i])
-        i++;
+        a[o] = document.getElementById ('in').value;
+        console.log("submitted:- "+a[o])
+        o++;
       }
       const clean = () =>{
         document.getElementById('in').value = '';
       }
       const start = () =>{
+        document.getElementById('se').innerHTML = '';
         document.getElementById('jj').innerHTML = null;
         document.getElementById('kk').innerHTML = null;
         document.getElementById('demo').innerHTML = null;
         document.getElementById('demo1').innerHTML = null;
         if(a.length != 0)
         {
-          let big =0;
-          for(var i =0;i<a.length;i++)
-          {
-            if(big < a[i])
-            {
-              big = a[i];
-            }
-          } 
+          
+          var width = (800 - window.outerWidth)*2;
+          let big =Math.max(...a)
           console.log("Biggest in array:- "+big)
           for(var i =0;i<a.length;i++)
           {
-            document.getElementById('kk').innerHTML+=(`<div class="main-graph1" id = ${a[i]} style="height: ${((a[i]*100)/big)*4.75 < 1?1:((a[i]*100)/big)*4.75}px;"></div>`)
+            document.getElementById('kk').innerHTML+=(`<div class="main-graph1" id = ${a[i]} style="height: ${(((a[i]*100)/big)*5)+width < 1?1:(((a[i]*100)/big)*5)+width}px;"></div>`)
           }
           document.getElementById('demo').innerHTML = null;
           for(var i=0;i<a.length;i++)
@@ -93,11 +90,11 @@
           a.sort(function(y, b) {
             return y - b;
           });
-          
+          console.log("width: "+width)
           for(var i=0;i<a.length;i++)
           {
               console.log(a[i])
-              document.getElementById("jj").innerHTML+=(`<div class="main-graph2" id = ${a[i]+"l"} style="height: ${((a[i]*100)/big)*4.75 < 1?1:((a[i]*100)/big)*4.75}px;"></div>`)
+              document.getElementById("jj").innerHTML+=(`<div class="main-graph2" id = ${a[i]+"l"} style="height: ${(((a[i]*100)/big)*5)+width < 1?1:(((a[i]*100)/big)*5)+width}px;"></div>`)
               
           }
           document.getElementById('demo1').innerHTML = null;
