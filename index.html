@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sorting App</title>
+  </head>
+  <style>
+    .main-graph2{
+      width: 10px;
+      display:inline-block;
+      margin-right:12px;
+      background-color: blue;
+    }
+    .main-graph1{
+      width: 10px;
+      display:inline-block;
+      margin-left:12px;
+      background-color: red;
+    }
+    .graph{
+      display: inline-block;
+    }
+    .number-bar{
+      display: block;
+      border: 3px solid black;
+    }
+    .input-data{
+      background-color: rgb(108, 90, 90);
+      text-align: center;
+      padding: 3px;
+    }
+  </style>
+  <body>
+    
+    <div id="kk" class="graph"><h1>Sort Your Numbers..</h1></div>
+    
+    <div id="jj" class="graph" style="float: right;"><h5>Enter Any number in box then hit SUBMIT ,submit your all numbers one by one ,and then click start..</h5></div>
+
+    <div class="number-bar">
+      <span id="demo">     </span>
+      <span id="demo1" style="float: right;">      </span>
+    </div>
+
+    <div>
+      <div class="input-data">
+        <input id="in" onclick="clean()" type="number" name="array">
+
+        <button onclick="submit()">Submit
+        </button>
+
+        <button onclick="start()">Start
+        </button>
+
+      </div>
+    </div>
+    <script>
+      
+      var i=0
+      
+      var a = []
+      const submit = () =>{
+        a[i] = document.getElementById ('in').value;
+        console.log("submitted:- "+a[i])
+        i++;
+      }
+      const clean = () =>{
+        document.getElementById('in').value = '';
+      }
+      const start = () =>{
+        document.getElementById('jj').innerHTML = null;
+        document.getElementById('kk').innerHTML = null;
+        document.getElementById('demo').innerHTML = null;
+        document.getElementById('demo1').innerHTML = null;
+        if(a.length != 0)
+        {
+          let big =0;
+          for(var i =0;i<a.length;i++)
+          {
+            if(big < a[i])
+            {
+              big = a[i];
+            }
+          } 
+          console.log("Biggest in array:- "+big)
+          for(var i =0;i<a.length;i++)
+          {
+            document.getElementById('kk').innerHTML+=(`<div class="main-graph1" id = ${a[i]} style="height: ${((a[i]*100)/big)*4.75 < 1?1:((a[i]*100)/big)*4.75}px;"></div>`)
+          }
+          document.getElementById('demo').innerHTML = null;
+          for(var i=0;i<a.length;i++)
+          {
+            document.getElementById('demo').innerHTML += `<span>${a[i]+" "}</span>`;
+          }
+          a.sort(function(y, b) {
+            return y - b;
+          });
+          
+          for(var i=0;i<a.length;i++)
+          {
+              console.log(a[i])
+              document.getElementById("jj").innerHTML+=(`<div class="main-graph2" id = ${a[i]+"l"} style="height: ${((a[i]*100)/big)*4.75 < 1?1:((a[i]*100)/big)*4.75}px;"></div>`)
+              
+          }
+          document.getElementById('demo1').innerHTML = null;
+          for(var i=0;i<a.length;i++)
+          {
+            document.getElementById('demo1').innerHTML += `<span>${a[i]+" "}</span>`;
+          }
+          a = new Array
+        }
+      }
+     
+      </script>
+    
+      
+    </body>
+</html>
