@@ -7,8 +7,8 @@
       <title>Quotes</title>
       <style>
             .center-me{
-            width: 50%;
-            height: 65%;
+            width: 80%;
+            height: 75%;
             padding: 20px;
             position: absolute;
             left: 50%;
@@ -56,8 +56,8 @@
 </head>
 <body style="background-color: #212f3d">
       <div class="promo">Created by Neel chhatbar</div>
-      <div class="center-me">
-            <div class="center">
+      <div class="center-me" id="demo">
+            <div class="center" id="demo1">
                   <img src="quote.svg" alt="quote logo" style="float: left;height: 50px;opacity: 20%;">
                   <div id="quote" style="padding:  10px 20px;font-family: Comic Sans MS ;font-size: 20px; text-align: center;">Loading...</div>
                   <strong><code><div id="author" style="padding: 20px;margin-top: auto;font-size: 20px;text-align: center;"></div></code></strong>
@@ -65,6 +65,13 @@
             </div>
       </div>
       <script>
+            if(window.outerWidth<=700)
+            {
+                  document.getElementById('demo').style.width = "85%";
+                  document.getElementById('demo').style.height = "80%";
+                  document.getElementById('demo1').style.width = "85%";
+                  document.getElementById('demo1').style.height = '85%';
+            }
             const quotes = document.getElementById('quote');
             const author = document.getElementById('author');
             const newQ = document.getElementById('newQ');
