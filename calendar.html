@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Calendar</title>
+      <style>
+            .center-me{
+            width: 295px;
+            height: 60%;
+            padding: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            background-color: #4b9dfd;
+            }
+            .add{
+            min-width: 20%;
+            height: 1%;
+            padding: 30px;
+            position: absolute;
+            left: 27%;
+            top: 93%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            border-radius: 50px;
+            font-size: 50%;
+            color: white;
+            }
+            .remove
+            {
+            min-width: 20%;
+            height: 1%;
+            padding: 30px;
+            position: absolute;
+            left: 73%;
+            top: 93%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            border-radius: 50px;
+            font-size: 50%;
+            color: white;
+            }
+            #heading
+            {
+                  padding: 5px;
+            }
+            .day{
+                  display: inline-block;
+                  width: 12%;
+                  margin: 0px;
+                  text-align: center;
+            }
+            .date{
+                  display: inline-block;
+                  width: 12%;
+                  margin: 0px;
+                  text-align: center;
+                  font-size: 15px;
+                  border-radius: 50%;
+            }
+            #cancel{
+                  margin-top: auto;
+                  background-color: #0178e5;
+                  border: none;
+                  color: white;
+                  font-family: Verdana, sans-serif;
+                  padding: 20px;
+            }
+            #main{
+                  padding: 10px;
+            }
+            
+      </style>
+</head>
+<body style="font-family: Verdana,sans-serif;">
+      <p id="show" class="showing" style="font-size: 0px;"></p>
+      <div style="display: block;">
+      <div class="center-me">
+            
+            <div id="heading">
+                  <span id="month"></span><span id="year"></span>
+                  <span style="float: right;">
+                        <img onclick="previous()" src="arrow-left-circle-fill.svg" title="Previous" alt="Previous" style="height: 25px;">
+                        <img onclick="next_user()" src="arrow-right-circle-fill.svg" title="Next" alt="Next" height="25px;">
+                  </span>
+
+            </div>
+            <div id="day-line">
+                  <div class="day">S</div>
+                  <div class="day">M</div>
+                  <div class="day">T</div>
+                  <div class="day">W</div>
+                  <div class="day">T</div>
+                  <div class="day">F</div>
+                  <div class="day">S</div>
+                  <hr>
+                  <div class="date su" id="1"></div>
+                  <div class="date mo" id="2"></div>
+                  <div class="date tu" id="3"></div>
+                  <div class="date we" id="4"></div>
+                  <div class="date th" id="5"></div>
+                  <div class="date fr" id="6"></div>
+                  <div class="date sa" id="7"></div>
+                  <div class="date su" id="8"></div>
+                  <div class="date mo" id="9"></div>
+                  <div class="date tu" id="10"></div>
+                  <div class="date we" id="11"></div>
+                  <div class="date th" id="12"></div>
+                  <div class="date fr" id="13"></div>
+                  <div class="date sa" id="14"></div>
+                  <div class="date su" id="15"></div>
+                  <div class="date mo" id="16"></div>
+                  <div class="date tu" id="17"></div>
+                  <div class="date we" id="18"></div>
+                  <div class="date th" id="19"></div>
+                  <div class="date fr" id="20"></div>
+                  <div class="date sa" id="21"></div>
+                  <div class="date su" id="22"></div>
+                  <div class="date mo" id="23"></div>
+                  <div class="date tu" id="24"></div>
+                  <div class="date we" id="25"></div>
+                  <div class="date th" id="26"></div>
+                  <div class="date fr" id="27"></div>
+                  <div class="date sa" id="28"></div>
+                  <div class="date su" id="29"></div>
+                  <div class="date mo" id="30"></div>
+                  <div class="date tu" id="31"></div>
+                  <div class="date we" id="32"></div>
+                  <div class="date th" id="33"></div>
+                  <div class="date fr" id="34"></div>
+                  <div class="date sa" id="35"></div>
+                  <div class="date su" id="36"></div>
+                  <div class="date mo" id="37"></div>
+                  <div class="date tu" id="38"></div>
+                  <div class="date we" id="39"></div>
+                  <div class="date th" id="40"></div>
+                  <div class="date fr" id="41"></div>
+                  <div class="date sa" id="42"></div>
+                  
+            </div>
+            <button class = "main-button" onclick="showing()" style="position: absolute;bottom: 0;margin-bottom: 20px;text-align: center;width: 90%;">Show Reminders(<span id="how_many">0</span>)</button>
+      </div>
+
+      <div class="add" id="addr"><div onclick="more()">Add reminder</div>
+            <hr style="width: 100%;">
+            <div id="first" style="display: none;"><div style="min-width: 40px;">Name: </div><input placeholder="Enter reminder's name" id="name" type="text" required autofocus><br></div>
+            
+            <div id="second" style="display: none;"><div style="min-width: 40px; ">Date: </div><input id="date" type="date" required></div>
+            <div id="third" style=" display:none; margin-top: 20px;"><button type="submit" onclick="add_reminder()" id="main">Add</button></div>
+            <div id="complain"></div>
+            <button id="cancel" onclick="more()" style="display: none;">Cancel</button>
+            
+      </div>
+      <div class="remove">
+            <div onclick="remove_reminders()">remove reminders</div>
+            <hr style="width: 100%;color: white;">
+      </div>
+      
+      <span style="font-size: 0px;" id="root">
+
+      </span>
+      </div>
+      
+      <script>
+            const how_many = () =>{
+                  document.getElementById('how_many').innerHTML = `${rank}`;
+            }
+
+            const showing = () =>{
+                  if(rank == 0)
+                  {
+                        document.getElementById('show').innerHTML = `<h1 style="font-size:20px;">0 Reminders..</h1>`
+                  }
+                  else
+                  {
+                        for(var i = 0;i<rank;i++)
+                        {
+                              document.getElementById(`${"l"+i}`).style.fontSize = "10px";
+                        }
+                  }         
+            }
+            
+            var flag = 0;
+
+            const more = () =>{
+                  
+                  if(flag == 0)
+                  {
+                        document.getElementById ('addr').style.height = "60%"
+                        document.getElementById('addr').style.width = "80%"
+                        document.getElementById('addr').style.top = "50%"
+                        document.getElementById('addr').style.left = "50%"
+                        document.getElementById('first').style.display = "block"
+                        document.getElementById('second').style.display = "block"
+                        document.getElementById('third').style.display = "block"
+                        document.getElementById('complain').innerHTML = "";
+                        document.getElementById('cancel').style.display="block";
+                        flag = 1;
+                  }
+                  else if(flag == 1)
+                  {
+                        flag = 0;
+                        document.getElementById ('addr').style.height = "1%";
+                        document.getElementById('addr').style.width = "20%"
+                        document.getElementById('addr').style.top = "93%"
+                        document.getElementById('addr').style.left = "27%"
+                        document.getElementById('first').style.display = "none"
+                        document.getElementById('second').style.display = "none"
+                        document.getElementById('third').style.display = "none"
+                        document.getElementById('complain').innerHTML = "";
+                        document.getElementById('cancel').style.display="none";
+                        next_user()
+                        previous()
+                  }
+            }
+            const clean = () =>{
+                  for(var i =1;i<=42;i++)
+                  {
+                        document.getElementById(`${i}`).innerHTML = ' ';
+                  }
+            }
+            let months = ['January','February','March','April','May','June','July','Auguest','September','October','November','December'];
+            var today = new Date();
+            var date = today.getDate();
+            const true_month = today.getMonth();
+            var month = today.getMonth();
+            var year = today.getFullYear();
+            var end_day;
+            var m ;
+             
+            var reminder_name = []
+            var reminder_date = []
+            var reminder_day  = []
+            var reminder_year = []
+            var reminder_month= []
+            var rank = 0;
+
+            const remove_reminders = () =>{
+                  localStorage.clear();
+                  rank=0;
+                  next_user()
+                  previous()
+                  show();
+            }
+
+            while(true)
+            {
+                  if(localStorage.getItem(`remind_name[${rank}]`) != null)
+                  {
+                        reminder_name[rank] = localStorage.getItem(`remind_name[${rank}]`)
+                        reminder_date[rank] = localStorage.getItem(`remind_date[${rank}]`)
+                        reminder_day[rank] = reminder_date[rank].substring(8,10)
+                        reminder_year[rank] = reminder_date[rank].substring(0,4)
+                        reminder_month[rank] = reminder_date[rank].substring(5,7)
+                        
+                        rank++;
+                  }
+                  else{
+                        how_many();
+                        break;
+                  }
+            }
+            
+            const show = ()=>{
+                  document.getElementById('show').innerHTML = '';
+                  console.log(rank);
+                  for(var i = 0;i<rank;i++)
+                  {
+                        if(i%10 == 0 && i>0)
+                        {
+                              document.getElementById('show').innerHTML += `<br>`
+                        }
+                        document.getElementById('show').innerHTML += `<span id="${"l"+i}">${"| "+reminder_name[i] + " "}${reminder_date[i]+" |"}</span>`
+                        
+                  }
+            }
+            
+            const save_reminder = () =>{
+                        reminder_name[rank] = document.getElementById('name').value;
+                        localStorage.setItem(`remind_name[${rank}]`,reminder_name[rank])
+                        reminder_date[rank] = document.getElementById('date').value;
+                        localStorage.setItem(`remind_date[${rank}]`,reminder_date[rank])
+                        reminder_day[rank] = reminder_date[rank].substring(8,10)
+                        reminder_year[rank] = reminder_date[rank].substring(0,4)
+                        reminder_month[rank] = reminder_date[rank].substring(5,7)
+                        document.getElementById('complain').innerHTML = `<p style="color:green;">Reminder Added..!</p>`
+                        rank++;
+                        how_many()
+            }
+            
+            const add_reminder = () =>{
+                  if((document.getElementById('name').value) == '' || (document.getElementById('date').value) == '')
+                  {
+                        document.getElementById('complain').innerHTML = `<p style="color:red;">Fill name and choose date properly..</p>`;
+                  }
+                  else if(((document.getElementById('date').value).substring(0,4)) <today.getFullYear())
+                  {
+                        document.getElementById('complain').innerHTML = `<p style="color:red;">Enter the Year which is greater than or equal to current Year</p>`;
+                  }
+                  else if(((document.getElementById('date').value).substring(5,7))<(today.getMonth()+1) && ((document.getElementById('date').value).substring(0,4)) <=today.getFullYear())
+                  {
+                        document.getElementById('complain').innerHTML = `<p style="color:red;">Enter the month which is greater than or equal to current Month</p>`;
+                  }
+                  else if(((document.getElementById('date').value).substring(8,10))<= today.getDate() && ((document.getElementById('date').value).substring(5,7))<=(today.getMonth()+1) && ((document.getElementById('date').value).substring(0,4)) <=today.getFullYear())
+                  {
+                        document.getElementById('complain').innerHTML = `<p style="color:red;">Enter the Date which is greater than current Date</p>`;
+                  }
+                  else
+                  {
+                        document.getElementById('complain').innerHTML = `<p style="color:green;">Reminder Added..!</p>`;
+                        save_reminder();
+                       show();
+                  }
+                  
+            }
+            
+            const clear_round = () =>{
+                  for(var i =1;i<=42;i++)
+                  {
+                        document.getElementById(`${i}`).style.border = "none";
+                        document.getElementById(`${i}`).title = "";
+                  }
+            }
+
+            
+            const check_reminder = () =>{
+                  clear_round();
+                  round_today();
+                  
+                  for(var i =0;i<rank;i++)
+                  {     
+                        for(var j = 1;j<=42;j++)
+                        {
+                              if((month+1) == reminder_month[i] && year == reminder_year[i] && (document.getElementById(`${j}`).innerHTML) == reminder_day[i])
+                              {
+                                    document.getElementById(`${j}`).style.border = "1px dashed green";
+                                    document.getElementById(`${j}`).title = `${reminder_name[i]}`;
+                              }
+                        }     
+                  }
+            }
+
+            const round_today = () =>{
+                  if(year == today.getFullYear())
+                  {
+                        if(true_month == month)
+                        {
+                              for(var i =1;i<42;i++)
+                              {
+                                    if((document.getElementById(`${i}`).innerHTML) == date)
+                                    {
+                                          document.getElementById(`${i}`).style.border="1px dotted red";
+                                          
+                                    }
+                              }
+                        }
+                        else{
+                              for(var i =1;i<42;i++)
+                        {
+                              document.getElementById(`${i}`).style.border="none";
+                        }
+                        }
+                  }
+                  else
+                  {
+                        for(var i =1;i<42;i++)
+                        {
+                              document.getElementById(`${i}`).style.border="none";
+                        }
+                  }
+            }
+
+            var check = 0;
+            const next_programmer = (end_day) =>{
+                  clean();
+                  var length = 31;
+                  if(end_day == 'su')
+                  {
+                        m = 1;
+                  }
+                  else if(end_day == 'mo')
+                  {
+                        m = 2;
+                  }
+                  else if(end_day == 'tu')
+                  {
+                        m = 3;
+                  }
+                  else if(end_day == 'we')
+                  {
+                        m = 4;
+                  }
+                  else if(end_day == 'th')
+                  {
+                        m = 5;
+                  }
+                  else if(end_day == 'fr')
+                  {
+                        m = 6;
+                  }
+                  else if(end_day == 'sa')
+                  {
+                        m = 7;
+                  }
+                  
+                  if(check == 1)
+                  {
+                        if(year%4 != 0)
+                        {
+                              length = 28;
+                        }
+                        else{
+                              length = 29;
+                        }
+                  }
+                  else if(check == 3 || check == 5 || check == 8 || check == 10 )
+                  {
+                        length = 30;
+                  }
+                  for(var i = 1;i<=length;i++)
+                  {
+                        
+                        document.getElementById(`${m}`).innerHTML = `${i}`;
+                        m++;
+                        if(i == length)
+                        {
+                              end_day = document.getElementById(`${m}`).classList[1];
+                              
+                              if(check < month)
+                              {
+                                    
+                                    check++;
+                                    
+                                    next_programmer(end_day)
+                              }
+                              else{
+                                    document.getElementById('root').innerHTML = `${end_day}`
+                              }
+                        }
+                  
+                  }
+
+                  
+                  check_reminder();
+                  show();
+            }
+            
+            next_programmer('sa');
+            
+            // console.log(end_day)
+            
+            document.getElementById('month').innerHTML = `${months[month]}`
+            document.getElementById('year').innerHTML = ` ${year}`
+            
+            const next_user = () =>{
+                  end_day = document.getElementById('root').innerHTML;
+                  if(month == 11)
+                  {
+                        year++;
+                        month = 0;
+                        check = 0;
+                  }
+                  else{
+                        month+=1;
+                        check++;
+                  }
+                  next_programmer(end_day)
+                  document.getElementById('month').innerHTML = `${months[month]}`
+                  document.getElementById('year').innerHTML = ` ${year}`
+                  
+            }
+            let clas;
+            var n ;
+            const previous = () => {
+                  if(month == 0 )
+                  {
+                        month = 11;
+                        check = 11;
+                        year--;
+                  }
+                  else
+                  {
+                  month--;
+                  check--;
+                  }
+                  for(var i =1;i<=14;i++)
+                  {
+                        if((document.getElementById(`${i}`).innerHTML)==1)
+                        {
+                              clean();
+                              clas = document.getElementById(`${i}`).classList[1];
+                              if(clas == 'su')
+                              {
+                                    n = 42-0;
+                                    document.getElementById('root').innerHTML = 'su';
+                              }
+                              else if(clas == 'mo')
+                              {
+                                    n = 42-6;
+                                    document.getElementById('root').innerHTML = 'mo';
+                              }
+                              else if(clas == 'tu')
+                              {
+                                    n = 42-5;
+                                    document.getElementById('root').innerHTML = 'tu';
+                              }
+                              else if(clas == 'we')
+                              {
+                                    n = 42-4;
+                                    document.getElementById('root').innerHTML = 'we';
+                              }
+                              else if(clas == 'th')
+                              {
+                                    n = 42-3;
+                                    document.getElementById('root').innerHTML = 'th';
+                              }
+                              else if(clas == 'fr')
+                              {
+                                    n = 42-2;
+                                    document.getElementById('root').innerHTML = 'fr';
+                              }
+                              else if(clas == 'sa')
+                              {
+                                    n = 42-1;
+                                    document.getElementById('root').innerHTML = 'sa';
+                              }
+                        
+                        
+                        var k = 31
+                        if((check) == 1)
+                        {
+                              if(year%4 != 0)
+                              {
+                                    k = 28;
+                              }
+                              else{
+                                    k = 29;
+                              }
+                        }
+                        else if((check) == 3 || (check) == 5 || (check) == 8 || (check) == 10 )
+                        {
+                              k = 30;
+                        }
+                        
+                        for(var i = n;i>0;i--)
+                        {
+                              if(k >= 1)
+                              {
+                                    document.getElementById(`${i}`).innerHTML = `${k}`;
+                                    
+                              }
+                              else{
+                                    document.getElementById(`${i}`).innerHTML = ` `;
+                              }
+                                    
+                              
+                              k--;
+                        }
+
+                        document.getElementById('month').innerHTML = `${months[month]}`
+                  document.getElementById('year').innerHTML = ` ${year}`
+                  
+                  
+                        break;
+                  }
+                  }
+                  check_reminder();
+                  
+            }
+            
+      </script>
+</body>
+</html>
