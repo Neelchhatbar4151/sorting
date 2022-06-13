@@ -1,0 +1,136 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.Container{
+    
+    width: 50%;
+            height: 100%;
+            padding: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+}
+.Container1{
+    width: 50%;
+            height: 100%;
+            padding: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+}
+.heading{
+    margin: 1rem;
+    border-radius: 1rem;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Lucida Handwriting';
+}
+.content{
+    margin: 1rem;
+    border: 2px solid red;
+    height: 21rem;
+    border-radius: 1rem;
+}
+.username{
+    background-color: aqua;
+    border: none;
+    height: 1.5rem;
+    width: 90%;
+    border: 1px solid black;
+    margin: 1rem;
+    font-family: 'Monaco';
+    border-radius: 1rem;
+    font-size: 1.1rem;
+}
+.username:hover{
+    background-color: black;
+    color: antiquewhite;
+}
+.inpuname{
+    margin-top: 1rem;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.2rem;
+}
+.inpname{
+   
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.2rem;
+}
+.name{
+    background-color: aqua;
+    height: 1.5rem;
+    width: 90%;
+    border: 1px solid black;
+    margin: 1rem;
+    font-family: 'Monaco';
+    border-radius: 1rem;
+    font-size: 1.1rem;
+}
+.name:hover{
+    background-color: black;
+    color: antiquewhite;
+}
+.pass{
+    background-color: aqua;
+    border: 1px solid black;
+    height: 1.5rem;
+    width: 90%;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+.pass:hover{
+    background-color: black;
+    color: antiquewhite;
+}
+.inpass{
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.2rem;
+    
+}
+.inpsub{
+    text-align: center;
+    padding-bottom: .2rem;
+    margin: 1rem;
+}
+.sub{
+    border: none;
+    width: 100%;
+    height: 3rem;
+    background-color: transparent;
+    font-family: 'Brush Script MT';
+    font-size: 2rem;
+    cursor: pointer;
+    padding-bottom: .4rem;
+}
+.sub:hover{
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+.registertxt{
+    
+    padding: .5rem;
+    text-align: center;
+}
+.registersubtxt{
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: blueviolet;
+}
+a{
+    text-decoration: none;
+}
