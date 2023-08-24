@@ -1,113 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Sorting App</title>
-  </head>
-  <style>
-    .main-graph2{
-      width: 10px;
-      display:inline-block;
-      margin-right:12px;
-      background-color: blue;
-    }
-    .main-graph1{
-      width: 10px;
-      display:inline-block;
-      margin-left:12px;
-      background-color: red;
-    }
-    .graph{
-      display: inline-block;
-    }
-    .number-bar{
-      display: block;
-      border: 3px solid black;
-    }
-    .input-data{
-      background-color: rgb(108, 90, 90);
-      text-align: center;
-      padding: 3px;
-    }
-  </style>
-  <body>
-    
-    <div id="kk" class="graph"><h1>Sort Your Numbers..</h1></div>
-    
-    <div id="jj" class="graph" style="float: right;"><h5>Enter Any number in box then hit SUBMIT ,submit your all numbers one by one ,and then click start..</h5></div>
-
-    <div class="number-bar">
-      <span id="demo">     </span>
-      <span id="demo1" style="float: right;">      </span>
-    </div>
-
-    <div>
-      <div class="input-data" id="se">
-        <input id="in" onclick="clean()" type="number" name="array">
-
-        <button onclick="submit()">Submit
-        </button>
-
-        <button onclick="start()">Start
-        </button>
-
+<head>
+      <title>Animation</title>
+      <style>
+            body{
+                  font-family:"Cairo", sans-serif;
+            }
+            .btn{
+                  width: 300px;
+                  background-color: rgb(39, 158, 255);
+                  font-family: Georgia, 'Times New Roman', Times, serif;
+                  border: none;
+                  padding: 8px 8px 8px 40px;
+                  font-size:large;
+                  text-align: left;
+                  border-radius: 10px 10px 0px 0px;
+            }
+            @keyframes Slide {
+                  from{
+                        height: 0px;
+                        opacity: 0;
+                        border-radius: 0px 0px 500px 500px;
+                  }
+                  to{
+                        height: 345px;
+                        opacity: 1;
+                        border-radius: 0px 0px 10px 10px;
+                  }
+            }
+            @keyframes pack {
+                  from{
+                        height: 0px;
+                        opacity: 0;
+                        border-radius: 0px 0px 500px 500px;
+                  }
+                  to{
+                        height: 345px;
+                        opacity: 1;
+                        border-radius: 0px 0px 10px 10px;
+                  }
+            }
+            .container{
+                  height: 345px;
+                  padding-top: 7px;
+                  display: none;
+                  width: 298px;
+                  border: 0.4px solid rgb(168, 168, 168);
+                  overflow: hidden;
+                  background-image: linear-gradient(to right,rgb(203, 203, 247), white);
+                  border-radius: 0px 0px 10px 10px;
+            }
+            .dv{
+                  
+                  padding: 12px 0px 12px 39px;
+                  text-align: left;
+                  color: #1c1c1c;
+            }
+            
+      </style>
+</head>
+<body>
+      <button type="button" class="btn" style="color:white;" onclick="animation()"> List</button>
+      <div class="container" id="anim">
+            <div class="dv">One</div>
+            <div class="dv">Two</div>
+            <div class="dv">Three</div>
+            <div class="dv">ABC</div>
+            <div class="dv">XYS</div>
+            <div class="dv">PYQ</div>
+            <div class="dv">AKL</div>
+            <div class="dv">GGG</div>
       </div>
-    </div>
-    <!-- <div><script>document.write(window.outerWidth)</script></div> -->
-    <script>
-      
-      var o=0
-      
-      var a = []
-      const submit = () =>{
-        a[o] = document.getElementById ('in').value;
-        console.log("submitted:- "+a[o])
-        o++;
-      }
-      const clean = () =>{
-        document.getElementById('in').value = '';
-      }
-      const start = () =>{
-        document.getElementById('se').innerHTML = '';
-        document.getElementById('jj').innerHTML = null;
-        document.getElementById('kk').innerHTML = null;
-        document.getElementById('demo').innerHTML = null;
-        document.getElementById('demo1').innerHTML = null;
-        if(a.length != 0)
-        {
-          
-          var width = (800 - window.outerWidth)*2;
-          let big =Math.max(...a)
-          console.log("Biggest in array:- "+big)
-          for(var i =0;i<a.length;i++)
-          {
-            document.getElementById('kk').innerHTML+=(`<div class="main-graph1" id = ${a[i]} style="height: ${(((a[i]*100)/big)*5)+width < 1?1:(((a[i]*100)/big)*5)+width}px;"></div>`)
-          }
-          document.getElementById('demo').innerHTML = null;
-          for(var i=0;i<a.length;i++)
-          {
-            document.getElementById('demo').innerHTML += `<span>${a[i]+" "}</span>`;
-          }
-          a.sort(function(y, b) {
-            return y - b;
-          });
-          console.log("width: "+width)
-          for(var i=0;i<a.length;i++)
-          {
-              console.log(a[i])
-              document.getElementById("jj").innerHTML+=(`<div class="main-graph2" id = ${a[i]+"l"} style="height: ${(((a[i]*100)/big)*5)+width < 1?1:(((a[i]*100)/big)*5)+width}px;"></div>`)
-              
-          }
-          document.getElementById('demo1').innerHTML = null;
-          for(var i=0;i<a.length;i++)
-          {
-            document.getElementById('demo1').innerHTML += `<span>${a[i]+" "}</span>`;
-          }
-          a = new Array
-        }
-      }
-     
+      <script>
+            function animation(){
+                  const E = document.getElementById("anim");
+                  if(E.style.display == "block"){
+                        E.style.animation = "pack 0.5s reverse ease-in-out"; 
+                        setTimeout(() => {E.style.display = "none";}, 490);
+                  }
+                  else{
+                        E.style.display = "block";
+                        E.style.animation = "Slide 0.5s ease-in-out"
+                  }
+            }
       </script>
-    
-      
-    </body>
+</body>
 </html>
